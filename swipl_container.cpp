@@ -3,6 +3,7 @@
 #include "helpers.h"
 
 #include <QDebug>
+#include <QCoreApplication>
 
 // Implementing singleton
 SWIPLContainer * SWIPLContainer::__instance = NULL;
@@ -35,9 +36,9 @@ SWIPLContainer::SWIPLContainer(const QStringList &args)
 SWIPLContainer::SWIPLContainer()
 {
     // Run with empty params by default
-    char *argv[] = { (char*)"",
-                     (char*)"-g",
-                     (char*)"true",
+    char *argv[] = { (char*) QCoreApplication::argv()[0],
+                     (char*) "-g",
+                     (char*) "true",
                      NULL };
     __init(3, argv);
 }

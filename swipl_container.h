@@ -13,7 +13,6 @@
 class SWIPLContainer
 {
 public:
-    virtual ~SWIPLContainer();
 
     // Singleton
     static SWIPLContainer &instance(void);
@@ -27,12 +26,11 @@ private:
     SWIPLContainer();
     SWIPLContainer(int argc, char **argv);
     SWIPLContainer(const QStringList &args);
+    virtual ~SWIPLContainer();
     Q_DISABLE_COPY(SWIPLContainer)
-
-    void __init(int argc, char **argv);
-
     static SWIPLContainer * __instance;
 
+    void __init(int argc, char **argv);
 };
 
 #endif // SWIPL_CONTAINER_H
