@@ -5,7 +5,9 @@
 
 #include <QString>
 
+#ifndef PL_USE_WCHARS
 #define PL_USE_WCHARS 1
+#endif
 
 class Helpers
 {
