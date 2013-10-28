@@ -17,6 +17,9 @@ public:
 
 private:
     Ui::App *ui;
+
+public slots:
+    void writeLog(const QString &text);
 };
 
 #endif // APP_H

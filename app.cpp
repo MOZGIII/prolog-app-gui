@@ -2,6 +2,7 @@
 #include "ui_app.h"
 
 #include "swipl_container.h"
+#include "logger.h"
 
 #include <QDebug>
 #include <QFile>
@@ -11,6 +12,9 @@ App::App(QWidget *parent) :
     ui(new Ui::App)
 {
     ui->setupUi(this);
+
+    // Connect UI logger
+    QObject::connect(Logger::current(), SIGNAL(onLog(QString)), this, SLOT(writeLog(QString)));
 
     // Run main logic here
     // Not the best place but it'll work for now
@@ -41,4 +45,9 @@ App::App(QWidget *parent) :
 App::~App()
 {
     delete ui;
+}
+
+void App::writeLog(const QString &text)
+{
+    ui->logText->appendPlainText(text);
 }

@@ -13,11 +13,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
     app.cpp \
     swipl_container.cpp \
-    helpers.cpp
+    helpers.cpp \
+    logger.cpp
 
 HEADERS  += app.h \
     swipl_container.h \
     prolog-api.h \
-    helpers.h
+    helpers.h \
+    logger.h
 
 FORMS    += app.ui
