@@ -10,8 +10,8 @@
 
 PREDICATE(log, 1)
 {
-  qDebug() << "PLLOG:" << Helpers::fromPlString(A1);
-  return TRUE;
+    qDebug() << "PLLOG:" << Helpers::fromPlString(A1);
+    return TRUE;
 }
 
 #endif // PROLOGAPI_H
