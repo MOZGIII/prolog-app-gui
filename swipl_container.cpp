@@ -36,10 +36,16 @@ SWIPLContainer::SWIPLContainer(const QStringList &args)
 SWIPLContainer::SWIPLContainer()
 {
     // Run with empty params by default
-    char *argv[] = { (char*) QCoreApplication::argv()[0],
-                     (char*) "-g",
-                     (char*) "true",
-                     NULL };
+    char *argv[] = {
+#ifdef Q_OS_WIN
+        (char*) "",
+#else
+        (char*) QCoreApplication::argv()[0],
+#endif
+        (char*) "-g",
+        (char*) "true",
+        NULL
+    };
     __init(3, argv);
 }
 
@@ -73,11 +79,11 @@ SWIPLContainer::~SWIPLContainer()
 // Call the arbitrary command
 int SWIPLContainer::call(const QString &command)
 {
-    return PlCall("call", PlTermv(PlCompound(Helpers::toPlString(command))));
+    return PlCall("call", PlTermv(PlCompound(toPlString(command))));
 }
 
 // Load database into the engine
 bool SWIPLContainer::consult(const QString &filename)
 {
-    return PlCall("consult", PlTerm(Helpers::toPlString(filename)));
+    return PlCall("consult", PlTerm(toPlString(filename)));
 }

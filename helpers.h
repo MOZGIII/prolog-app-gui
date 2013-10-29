@@ -6,7 +6,7 @@
 #include <QString>
 
 #ifndef PL_USE_WCHARS
-#define PL_USE_WCHARS 1
+#define PL_USE_WCHARS 0
 #endif
 
 class Helpers
@@ -14,13 +14,15 @@ class Helpers
 public:
     Helpers();
 
-#if PL_USE_WCHARS
-    static QString fromPlString(wchar_t * s);
-    static const wchar_t * toPlString(QString s);
+#if PL_USE_WCHARS != 0
+#   define PR_CHAR_T wchar_t*
+#   define toPlString(s) (s.toStdWString().c_str())  // allocates string on heap!
 #else
-    static QString fromPlString(char * s);
-    static const char * toPlString(QString s);
+#   define PR_CHAR_T char*
+#   define toPlString(s) (s.toStdString().c_str())  // allocates string on heap!
 #endif
+
+    static QString fromPlString(PR_CHAR_T s);
 };
 
 #endif // HELPERS_H
