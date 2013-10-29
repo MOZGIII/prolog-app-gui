@@ -12,6 +12,11 @@ App::App(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // Set monospace font
+    QFont monospace_font("Monospace");
+    monospace_font.setStyleHint(QFont::TypeWriter);
+    ui->logText->setFont(monospace_font);
+
     // Connect UI logger
     QObject::connect(Logger::current(), SIGNAL(onLog(QString)), this, SLOT(writeLog(QString)));
 
