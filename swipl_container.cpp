@@ -76,14 +76,15 @@ SWIPLContainer::~SWIPLContainer()
 
 // Implementation
 
+// Load database into the engine
+bool SWIPLContainer::consult(const QString &filename)
+{
+    return PlCall("consult", PlTerm(toPlString(filename)));
+}
+
 // Call the arbitrary command
 int SWIPLContainer::call(const QString &command)
 {
     return PlCall("call", PlTermv(PlCompound(toPlString(command))));
 }
 
-// Load database into the engine
-bool SWIPLContainer::consult(const QString &filename)
-{
-    return PlCall("consult", PlTerm(toPlString(filename)));
-}

@@ -13,13 +13,13 @@
 class SWIPLContainer
 {
 public:
-
     // Singleton
     static SWIPLContainer &instance(void);
     static void unload(void);
 
-    int call(const QString &command);
     bool consult(const QString &filename);
+
+    int call(const QString &command);
 
 private:
     // Singleton
