@@ -20,6 +20,10 @@ private:
 
 public slots:
     void writeLog(const QString &text);
+    void writePayload(const QString &text);
+
+private slots:
+    void on_payloadCalculate_clicked();
 };
 
 #endif // APP_H
