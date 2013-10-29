@@ -17,6 +17,7 @@ App::App(QWidget *parent) :
 
     // Connect logic
     QObject::connect(&Logic::instance(), SIGNAL(gotPayload(QString)), this, SLOT(writePayload(QString)));
+    QObject::connect(&Logic::instance(), SIGNAL(gotException(QString)), this, SLOT(writePayloadException(QString)));
 
     // We're done initilializing app's core
     qDebug() << "Initializtion finished!";
@@ -38,6 +39,11 @@ void App::writeLog(const QString &text)
 void App::writePayload(const QString &text)
 {
     ui->payloadResult->appendPlainText(text);
+}
+
+void App::writePayloadException(const QString &text)
+{
+    ui->payloadResult->appendHtml(QString("<i>%1</i>").arg(text));
 }
 
 void App::on_payloadCalculate_clicked()
