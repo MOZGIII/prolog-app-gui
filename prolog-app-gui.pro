@@ -10,18 +10,18 @@ include(swipl-linkage.pri)
 TARGET = prolog-app-gui
 TEMPLATE = app
 
-SOURCES += main.cpp\
-    app.cpp \
-    swipl_container.cpp \
-    helpers.cpp \
-    logger.cpp \
-    logic.cpp
+SOURCES += src/main.cpp\
+    src/app.cpp \
+    src/swipl_container.cpp \
+    src/helpers.cpp \
+    src/logger.cpp \
+    src/logic.cpp
 
-HEADERS  += app.h \
-    swipl_container.h \
-    prolog-api.h \
-    helpers.h \
-    logger.h \
-    logic.h
+HEADERS  += src/app.h \
+    src/swipl_container.h \
+    src/prolog-api.h \
+    src/helpers.h \
+    src/logger.h \
+    src/logic.h
 
-FORMS    += app.ui
+FORMS    += forms/app.ui

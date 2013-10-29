@@ -1,7 +1,6 @@
 #include "app.h"
 #include "ui_app.h"
 
-#include "swipl_container.h"
 #include "logger.h"
 #include "logic.h"
 
