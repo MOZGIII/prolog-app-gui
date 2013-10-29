@@ -14,12 +14,14 @@ SOURCES += main.cpp\
     app.cpp \
     swipl_container.cpp \
     helpers.cpp \
-    logger.cpp
+    logger.cpp \
+    logic.cpp
 
 HEADERS  += app.h \
     swipl_container.h \
     prolog-api.h \
     helpers.h \
-    logger.h
+    logger.h \
+    logic.h
 
 FORMS    += app.ui

@@ -3,9 +3,9 @@
 
 #include "swipl_container.h"
 #include "logger.h"
+#include "logic.h"
 
 #include <QDebug>
-#include <QFile>
 
 App::App(QWidget *parent) :
     QWidget(parent),
@@ -16,30 +16,14 @@ App::App(QWidget *parent) :
     // Connect UI logger
     QObject::connect(Logger::current(), SIGNAL(onLog(QString)), this, SLOT(writeLog(QString)));
 
-    // Run main logic here
-    // Not the best place but it'll work for now
+    // Connect logic
+    QObject::connect(&Logic::instance(), SIGNAL(gotPayload(QString)), this, SLOT(writePayload(QString)));
 
+    // We're done initilializing app's core
     qDebug() << "Initializtion finished!";
 
-    SWIPLContainer & swipl = SWIPLContainer::instance();
-
-    QString autoload_filename("autoload.pl"); // hardcoding this so far
-
-    // Catch errors and show them to user
-    if(QFile(autoload_filename).exists())
-    {
-        qDebug() << "Trying to autoload file:" << autoload_filename;
-        try
-        {
-            // Load init file
-            if(swipl.consult(autoload_filename)) qDebug() << "Database autoloaded successfully!";
-        }
-        catch (PlException &ex)
-        {
-            qDebug() << "Prolog has thrown an exception during database autoload:" << QString(ex);
-        }
-    }
-
+    // Try to autoload file now
+    Logic::instance().autoload();
 }
 
 App::~App()
@@ -59,23 +43,7 @@ void App::writePayload(const QString &text)
 
 void App::on_payloadCalculate_clicked()
 {
-    // We must store input parameter on heap util Prolog returns
-    // Allocate byte array here so it exists for the whole execution
-    QByteArray storage(ui->payloadInput->text().toLocal8Bit());
-
-    try
-    {
-        PlTermv av(2);
-        av[0] = PlCompound(storage.constData());
-
-        PlQuery q("external_app_call", av);
-
-        while(q.next_solution())
-            emit writePayload(Helpers::fromPlString(av[1]));
-
-    }
-    catch(PlException &ex)
-    {
-        qDebug() << "Prolog exception:" << QString(ex);
-    }
+    Logic::instance()
+            .call_prolog_function("external_app_call",
+                                  QStringList() << ui->payloadInput->text());
 }

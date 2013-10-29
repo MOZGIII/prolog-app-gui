@@ -15,14 +15,17 @@ public:
     Helpers();
 
 #if PL_USE_WCHARS != 0
-#   define PR_CHAR_T wchar_t*
-#   define toPlString(s) (s.toStdWString().c_str())  // allocates string on heap!
+#   define PL_CHAR_T wchar_t*
+#   define PL_STDSTRING_T std::wstring
+#   define toPlStdString(s) (s.toStdWString())  // allocates string on heap!
 #else
-#   define PR_CHAR_T char*
-#   define toPlString(s) (s.toStdString().c_str())  // allocates string on heap!
+#   define PL_CHAR_T char*
+#   define PL_STDSTRING_T std::string
+#   define toPlStdString(s) (s.toStdString())  // allocates string on heap!
 #endif
 
-    static QString fromPlString(PR_CHAR_T s);
+    #define toPlString(s) (s.toStdString().c_str())  // allocates string on heap!
+    static QString fromPlString(PL_CHAR_T s);
 };
 
 #endif // HELPERS_H
