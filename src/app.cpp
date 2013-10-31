@@ -3,6 +3,7 @@
 
 #include "logger.h"
 #include "logic.h"
+#include "settings_manager.h"
 
 #include <QDebug>
 
@@ -23,6 +24,9 @@ App::App(QWidget *parent) :
     // Connect logic
     QObject::connect(&Logic::instance(), SIGNAL(gotPayload(QString)), this, SLOT(writePayload(QString)));
     QObject::connect(&Logic::instance(), SIGNAL(gotException(QString)), this, SLOT(writePayloadException(QString)));
+
+    // Load settings
+    loadSettings();
 
     // We're done initilializing app's core
     qDebug() << "Initializtion finished!";
@@ -53,7 +57,22 @@ void App::writePayloadException(const QString &text)
 
 void App::on_payloadCalculate_clicked()
 {
+    if(ui->settingsAutoReload->isChecked())
+    {
+        Logic::instance().autoload();
+    }
+
     Logic::instance()
             .call_prolog_function("external_app_call",
                                   QStringList() << ui->payloadInput->text());
+}
+
+void App::loadSettings()
+{
+    ui->settingsAutoReload->setChecked(SettingsManager::instance().autoReload());
+}
+
+void App::on_settingsAutoReload_toggled(bool checked)
+{
+    SettingsManager::instance().setAutoReload(checked);
 }

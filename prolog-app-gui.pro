@@ -15,13 +15,15 @@ SOURCES += src/main.cpp\
     src/swipl_container.cpp \
     src/helpers.cpp \
     src/logger.cpp \
-    src/logic.cpp
+    src/logic.cpp \
+    src/settings_manager.cpp
 
 HEADERS  += src/app.h \
     src/swipl_container.h \
     src/prolog-api.h \
     src/helpers.h \
     src/logger.h \
-    src/logic.h
+    src/logic.h \
+    src/settings_manager.h
 
 FORMS    += forms/app.ui

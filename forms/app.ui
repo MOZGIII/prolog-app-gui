@@ -72,6 +72,23 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="settingsTab">
+      <attribute name="title">
+       <string>Settings</string>
+      </attribute>
+      <layout class="QFormLayout" name="formLayout">
+       <property name="fieldGrowthPolicy">
+        <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+       </property>
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="settingsAutoReload">
+         <property name="text">
+          <string>Reload Prolog database on each payload call</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>

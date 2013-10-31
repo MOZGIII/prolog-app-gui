@@ -18,6 +18,8 @@ public:
 private:
     Ui::App *ui;
 
+    void loadSettings();
+
 public slots:
     void writeLog(const QString &text);
     void writePayload(const QString &text);
@@ -25,6 +27,7 @@ public slots:
 
 private slots:
     void on_payloadCalculate_clicked();
+    void on_settingsAutoReload_toggled(bool checked);
 };
 
 #endif // APP_H
