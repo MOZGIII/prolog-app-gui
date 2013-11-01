@@ -26,4 +26,7 @@ HEADERS  += src/app.h \
     src/logic.h \
     src/settings_manager.h
 
+INCLUDEPATH += contrib/cpp
+
 FORMS    += forms/app.ui
+
