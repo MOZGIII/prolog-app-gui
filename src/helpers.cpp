@@ -1,5 +1,7 @@
 #include "helpers.h"
 
+#include "logic.h"
+
 Helpers::Helpers()
 {
 }
@@ -15,3 +17,8 @@ QString Helpers::fromPlString(char * s)
     return QString(s);
 }
 #endif
+
+void Helpers::writePayload(const QString &text)
+{
+    Logic::instance().gotPayload(text);
+}

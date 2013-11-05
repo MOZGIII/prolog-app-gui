@@ -14,4 +14,10 @@ PREDICATE(log, 1)
     return TRUE;
 }
 
+PREDICATE(payload, 1)
+{
+    Helpers::writePayload(Helpers::fromPlString(A1));
+    return TRUE;
+}
+
 #endif // PROLOGAPI_H

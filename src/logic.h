@@ -8,6 +8,8 @@
 class Logic : public QObject
 {
     Q_OBJECT
+
+    friend class Helpers;
 public:
     static Logic &instance();
 

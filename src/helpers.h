@@ -26,6 +26,8 @@ public:
 
     #define toPlString(s) (s.toStdString().c_str())  // allocates string on heap!
     static QString fromPlString(PL_CHAR_T s);
+
+    static void writePayload(const QString &text);
 };
 
 #endif // HELPERS_H
