@@ -47,7 +47,7 @@ void App::writeLog(const QString &text)
 
 void App::writePayload(const QString &text)
 {
-    ui->payloadResult->appendPlainText(text);
+    ui->payloadResult->appendHtml(text);
 }
 
 void App::writePayloadException(const QString &text)
