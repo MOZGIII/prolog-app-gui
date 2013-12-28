@@ -64,7 +64,7 @@ void App::on_payloadCalculate_clicked()
 
     Logic::instance()
             .call_prolog_function("external_app_call",
-                                  QStringList() << ui->payloadInput->text());
+                                  QStringList() << ui->payloadInput->text() << ui->payloadInputD->text());
 }
 
 void App::loadSettings()

@@ -1,0 +1,3 @@
+[submodule "integration"]
+	path = integration
+	url = git@git.mozgiii.net:MOZGIII/integration.git

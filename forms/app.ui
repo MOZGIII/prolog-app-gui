@@ -24,10 +24,21 @@
        <string>Payload</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="1" column="0">
-        <widget class="QLineEdit" name="payloadInput"/>
-       </item>
        <item row="1" column="1">
+        <widget class="QLabel" name="label_int">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;int;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="label_d">
+         <property name="text">
+          <string>d</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
         <widget class="QPushButton" name="payloadCalculate">
          <property name="text">
           <string>Calculate</string>
@@ -37,10 +48,33 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0" colspan="2">
+       <item row="0" column="0" colspan="6">
         <widget class="QPlainTextEdit" name="payloadResult">
          <property name="readOnly">
           <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>Ready.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLineEdit" name="payloadInputD">
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>x</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLineEdit" name="payloadInput">
+         <property name="text">
+          <string>x^2+1</string>
          </property>
         </widget>
        </item>
@@ -90,10 +124,12 @@
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
   <tabstop>payloadInput</tabstop>
+  <tabstop>payloadInputD</tabstop>
   <tabstop>payloadCalculate</tabstop>
   <tabstop>payloadResult</tabstop>
   <tabstop>mainTabs</tabstop>
   <tabstop>logText</tabstop>
+  <tabstop>settingsAutoReload</tabstop>
  </tabstops>
  <resources/>
  <connections>
@@ -104,12 +140,28 @@
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>258</x>
-     <y>261</y>
+     <x>287</x>
+     <y>375</y>
     </hint>
     <hint type="destinationlabel">
-     <x>328</x>
-     <y>268</y>
+     <x>577</x>
+     <y>377</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>payloadInputD</sender>
+   <signal>returnPressed()</signal>
+   <receiver>payloadCalculate</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>479</x>
+     <y>364</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>520</x>
+     <y>365</y>
     </hint>
    </hints>
   </connection>
